@@ -1,0 +1,65 @@
+1.concat是拼接两个数组，push是往数组中加元素
+2.Pop、shift删除最后/第一个数组元素，push、unShift相反、
+3.Function不被调用就不会执行，尤其在递归函数中要尤其注意
+4.forEach比for要优越，只能用于数组
+5.splice(2,0,’a’,18)//位置2插入a字符串和18;  
+6.splice(3,?2)，从位置3 开始删除两个元素
+7.a.slice(0); //返回数组的拷贝数组，注意是一个新的数组，不是指向
+  a.concat(); //返回数组的拷贝数组，注意是一个新的数组，不是指向
+8.拷贝出新对象
+	{...b} = a  
+  	a = JSON.parse(JSON.stringify(b));
+	a = Object.assign({}, b);
+
+A instanceof B,判断A是否是B类型
+A.isArray
+typeof(A) ==='Object'//typeof(数组)返回的是Object！
+
+
+http://www.cnblogs.com/qiantuwuliang/archive/2011/01/08/1930499.html
+操作数组：A.push(B)、A.unshift(B)、A.shift(B)、A.pop(B)、splice、A.concat(B)、reverse(A)//反转、
+		sort(A)//http://www.w3school.com.cn/jsref/jsref_sort.asp、
+		//例子1:才可以正确排序字符串否则按照首个字符排序)、
+		A.join(x)//（将数组A变成字符串，以x为分隔符）
+		A.toLocaleString(),toString()和valueOf() //特殊的join
+		//调用数组的toString()   ["red", "blue", "green"]=> "red,blue,green"
+		  和valueOf()   ["red", "blue", "green"]=> ["red", "blue", "green"]
+		//https://zhidao.baidu.com/question/650076014871763645.html?fr=iks&word=toLocaleString%BA%CDtoString&ie=gbk
+		A.length、
+		A.prototype !!!!
+		A.constructor  !!!!
+		A.lastIndexOf():从数组的末尾开始向前查找
+		A.indexOf():从数组的开头开始向前查找
+操作对象：
+
+操作字符串：
+
+
+
+
+深拷贝五种方式
+const usersCopy1 = Object.assign({}, users);
+const {...usersCopy2} = users;
+const usersCopy3 = JSON.parse(JSON.stringify(users));
+const usersCopy4 = users.slice(0);
+const usersCopy5 = users.concat();
+
+
+
+
+例子1：
+function sortNumber(a,b)
+{
+	return a - b
+}
+
+var arr = new Array(6)
+arr[0] = "10"
+arr[1] = "5"
+arr[2] = "40"
+arr[3] = "25"
+arr[4] = "1000"
+arr[5] = "1"
+
+document.write(arr + "<br />")
+document.write(arr.sort(sortNumber))
