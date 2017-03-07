@@ -87,6 +87,9 @@ Git忽略规则及.gitignore规则不生效的解决办法
 git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
+规则出错回复办法
+git reset head .
+
 
 查看分支：
 git log --graph --decorate --oneline --simplify-by-decoration --all

@@ -1,0 +1,18 @@
+className={isPM && 'text-danger'}
+
+flux简介
+http://www.cocoachina.com/webapp/20150928/13600.html
+
+
+浅谈 React、Flux 与 Redux
+http://imweb.io/topic/57711e37f0a5487b05f325b5?utm_source=tuicool&utm_medium=referral
+
+
+Redux 可以用这三个基本原则来描述：
+
+单一数据源
+整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。
+
+不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。你也可以开启对ES7提案对象展开运算符的支持, 从而使用 { ...state, ...newState } 达到相同的目的。
+
+当我们使用组件< Main />时，其实是对Main类的实例化——new Main，只不过react对这个过程进行了封装，让它看起来更像是一个标签。
