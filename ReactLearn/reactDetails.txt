@@ -16,3 +16,22 @@ Redux 可以用这三个基本原则来描述：
 不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。你也可以开启对ES7提案对象展开运算符的支持, 从而使用 { ...state, ...newState } 达到相同的目的。
 
 当我们使用组件< Main />时，其实是对Main类的实例化——new Main，只不过react对这个过程进行了封装，让它看起来更像是一个标签。
+
+redux概念
+（1）Reducer：纯函数，只承担计算 State 的功能，不合适承担其他功能，也承担不了，因为理论上，纯函数不能进行读写操作。
+（2）View：与 State 一一对应，可以看作 State 的视觉层，也不合适承担其他功能。
+（3）Action：存放数据的对象，即消息的载体，只能被别人操作，自己不能进行任何操作。
+
+
+
+
+React Props
+state 和 props 主要的区别在于 props 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。
+
+http://www.runoob.com/react/react-props.html
+
+
+
+props
+其实，这里…this.props和…other功能差不多。但是，其不同的地方在于，…other是包含除了明确使用的属性以外剩下的那些属性。而…this.props包含所有的属性，不论你是否是明确使用的。也就是说，在上面的额例子中，checked属性也会被传到组件里面去。
+http://www.onmpw.com/tm/xwzj/web_159.html

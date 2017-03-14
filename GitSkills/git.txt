@@ -7,6 +7,7 @@ git update-index --chmod=+x gradlew
 提交修改
 $ git commit -m "revise permission access"
 
+远程的github分别为 gitbdcom
 
 
 安装yarn：
@@ -186,6 +187,7 @@ workspace in company
 3.git checkout -b dev
 .....coding and git status git add git pull   
 4.git remote add upstream git@github.corp.ebay.com:jiljiang/HeadCount.git
+
 5.checkout to master then git remote update upstream , git rebase upstream/master
 6.checkout to dev then git push origin dev:dev
 7.create pull request in dev branch
@@ -214,6 +216,10 @@ system variables name：path ;%CYGWIN_HOME\bin;
 
 git remote remove origin 
 git remote rename origin  new
+
+GitHub 现在推荐使用 HTTPS 了。https://help.github.com/articles/which-remote-url-should-i-use/ 
+
+如何在 HTTPS 下将密码存入操作系统 keychain： https://help.github.com/articles/caching-your-github-password-in-git
 
 
 const EMPLOYEE_QUERY = 'http://cms.vip.stratus.ebay.com/cms/repositories/cmsdb/branches/main/query/LDAPContact%5B%40loginName%3D%22vtian%22%5D%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D?mode=uri';
