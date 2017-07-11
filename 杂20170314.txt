@@ -1,0 +1,42 @@
+html5 的服务器推送 Server-sent Events和 websocket这两个是不是同一个东西，是两个不同的？
+http://www.cnblogs.com/w3cdream/p/4997834.html
+
+nodejs的框架express的res.redirect与react-router-dom的redirect有什么不同
+一个匹配 http request 一个匹配 window.location
+
+react-router
+react-router是官方的也是目前react唯一的路由库，基本上大型的项目都会使用到，你可以通过管理URL，实现组件的自由切换和状态的变化。
+
+
+nodejs深入浅出
+http://www.infoq.com/cn/articles/what-is-nodejs/
+http://blog.csdn.net/bjiang927/article/details/47723359
+
+测试框架mocha
+
+一键安装lamp安装包完整版
+http://lnmporg.duapp.com/lnmp/lnmp1.3-full.tar.gz
+
+https://download.jianrry.com/lnmp/lnmp1.3-full.tar.gz
+
+md5sum lnmp1.3-full.tar.gz|cut -d ' ' -f1
+
+tar zxf  lnmp1.3-full.tar.gz  && cd lnmp1.3-full && ./install.sh lnmp
+
+
+ref：https://lnmp.org/faq/lnmp-software-list.html
+
+
+ssh-keygen -t rsa -b 4096 -C "1018423717@qq.com"
+
+eval $(ssh-agent -s)
+
+ssh-add ~/.ssh/id_rsa
+
+cp ~/.ssh/id_rsa.pub /home/wwwroot/www.ty1982.cn
+
+
+cp /home/wwwroot/www.ty1982.cn/*  /home/wwwroot/www.ty1982.cn
+
+
+sort :  a==b 不变序，a!=b逆序，a-b小到大，b-a大到小

@@ -1,8 +1,28 @@
+import classNames from 'classnames';
+
+
+<span
+	className={classNames('fa fa-user', {
+		'text-primary': isFTE,
+		'text-danger': isIntern,
+		'text-warning': isAWF,
+	})}
+/>
+
+
 className={isPM && 'text-danger'}
+
+react dom diff机制 
+http://www.infoq.com/cn/articles/react-dom-diff
+
+react简书
+http://www.jianshu.com/p/90a72128ec76
 
 flux简介
 http://www.cocoachina.com/webapp/20150928/13600.html
 
+w3c标准
+https://www.w3.org/standards/
 
 浅谈 React、Flux 与 Redux
 http://imweb.io/topic/57711e37f0a5487b05f325b5?utm_source=tuicool&utm_medium=referral
@@ -35,3 +55,45 @@ http://www.runoob.com/react/react-props.html
 props
 其实，这里…this.props和…other功能差不多。但是，其不同的地方在于，…other是包含除了明确使用的属性以外剩下的那些属性。而…this.props包含所有的属性，不论你是否是明确使用的。也就是说，在上面的额例子中，checked属性也会被传到组件里面去。
 http://www.onmpw.com/tm/xwzj/web_159.html
+
+
+super
+http://biorc.com.cn.board.segmentfault.com/q/1010000008479982/a-1020000008482245?k=61bfd7008eb6b8d5e4b42e4d03408763
+1.调用super的原因：在ES6中，在子类的constructor中必须先调用super才能引用this，它可以绑定事件到this上
+2.super(props)的目的：在constructor中可以使用this.props
+3.最后，可以看下React文档，里面有一段；
+Class components should always call the base constructor with props.
+之所以有super()调用就会有setState函数或者bind函数，而super还没有去掉融入在constructor里面，是因为可以自己决定继承的时间，你可以决定是先有花还是先有土。
+4.继承父组件的方法
+
+
+bind()最简单的用法是创建一个函数，使这个函数不论怎么调用都有同样的this值。常见的错误就像上面的例子一样，将方法从对象中拿出来，然后调用，并且希望this指向原来的对象。如果不做特殊处理，一般会丢失原来的对象。使用bind()方法能够很漂亮的解决这个问题：
+
+this.num = 9; 
+var mymodule = {
+  num: 81,
+  getNum: function() { return this.num; }
+};
+
+module.getNum(); // 81
+
+var getNum = module.getNum;
+getNum(); // 9, 因为在这个例子中，"this"指向全局对象
+
+// 创建一个'this'绑定到module的函数
+var boundGetNum = getNum.bind(module);
+boundGetNum(); // 81
+
+ES6
+const list = tasksList.map(({ name }) => name);
+
+var list = [];
+taskList.map(function(value){
+   var name = value['name'];
+   return list.push[name];	
+})
+
+var list = [];
+taskList.map(function(value){
+   return name = value['name'];
+})

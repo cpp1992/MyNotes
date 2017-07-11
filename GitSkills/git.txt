@@ -1,4 +1,71 @@
-﻿查看Repository中文件权限
+﻿http://cssor.com/git-subtree-usage.html
+当然，如果你的确想用 gh-pages（或别的什么目录名）的话，以下是一种我认为最简单的方法：
+
+第一步
+
+/dist 目录需要被 git 记录，于是后面我们才可以用它作为子树（subtree），因此 /dist 不能被 .gitignore 规则排除
+
+第二步
+
+git subtree push --prefix builds origin master
+
+搞定。其中：
+
+dist 代表子树所在的目录名
+origin 是 remote name
+gh-pages 是目标分支名称
+
+
+
+Git忽略规则和.gitignore规则不生效的解决办法
+
+　　Git忽略规则：
+
+在git中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如果没有这个文件，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：
+
+# 此为注释 – 将被 Git 忽略
+
+*.sample 　　 # 忽略所有 .sample 结尾的文件
+!lib.sample 　　 # 但 lib.sample 除外
+/TODO 　　 # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+build/ 　　 # 忽略 build/ 目录下的所有文件
+doc/*.txt 　　# 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+
+　　.gitignore规则不生效的解决办法
+
+把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被追踪的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未被追踪状态），然后再提交：
+
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
+
+远程服务器拷贝到本地 scp -r pengcheng@10.64.212.113 C:\Gitrk\eBay\node
+
+node-sass 安装失败解决办法：
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+
+淘宝镜像：
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+eBay镜像：
+npm install -g ssoapp-ebay --registry=http://npm.corp.ebay.com/
+
+
+http://registry.npm.taobao.org/
+
+
+webstorm支持es6
+Preferences > Languages & Frameworks > JavaScript
+
+git tag -a v1.0-m 'first version'
+git push origin --tags
+
+git tag -d v1.1.1;
+git push origin :v1.1.1
+
+git push origin --delete <branchName>
+
+查看Repository中文件权限
 git ls-tree HEAD
 100644 blob xxxxxxxxxxx gradlew
 修改权限
@@ -135,6 +202,7 @@ git rebase upstream/master  或者git rebase master
 git log 查看有没有加进去他的commit
 
 淘宝镜像：npm install -g cnpm --registry=https://registry.npm.taobao.org
+ebay镜像：npm install -g ssoapp-ebay --registry=http://npm.corp.ebay.com/
 打包：npm run vendor
 重启：npm restart 
 启动: npm start

@@ -1,0 +1,9 @@
+1.eslint的LF CRLF错误
+settings->Editor->Code Style->line separator->Unix and OS X
+2.tab和空格的错误
+首先查找.editorconfig文件，查看其[*]配置中的indent_style = tab和indent_size = 4这两个是否是有的。没有则添加上
+在WS确认打开了eslint的情况下，右键需要finish的文件Fix EslintProblems
+
+https://www.jetbrains.com/help/phpstorm/2017.1/configuring-line-separators.html
+
+editor-code sytle-JavaScript-Use tab character 勾上
