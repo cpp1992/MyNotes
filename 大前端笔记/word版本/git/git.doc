@@ -1,0 +1,293 @@
+﻿http://cssor.com/git-subtree-usage.html
+当然，如果你的确想用 gh-pages（或别的什么目录名）的话，以下是一种我认为最简单的方法：
+
+第一步
+
+/dist 目录需要被 git 记录，于是后面我们才可以用它作为子树（subtree），因此 /dist 不能被 .gitignore 规则排除
+
+第二步
+
+git subtree push --prefix builds origin master
+
+搞定。其中：
+
+dist 代表子树所在的目录名
+origin 是 remote name
+gh-pages 是目标分支名称
+
+
+
+Git忽略规则和.gitignore规则不生效的解决办法
+
+　　Git忽略规则：
+
+在git中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如果没有这个文件，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：
+
+# 此为注释 – 将被 Git 忽略
+
+*.sample 　　 # 忽略所有 .sample 结尾的文件
+!lib.sample 　　 # 但 lib.sample 除外
+/TODO 　　 # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+build/ 　　 # 忽略 build/ 目录下的所有文件
+doc/*.txt 　　# 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+
+　　.gitignore规则不生效的解决办法
+
+把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被追踪的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未被追踪状态），然后再提交：
+
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
+
+远程服务器拷贝到本地 scp -r pengcheng@10.64.212.113 C:\Gitrk\eBay\node
+
+node-sass 安装失败解决办法：
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+
+淘宝镜像：
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+eBay镜像：
+npm install -g ssoapp-ebay --registry=http://npm.corp.ebay.com/
+
+
+http://registry.npm.taobao.org/
+
+
+webstorm支持es6
+Preferences > Languages & Frameworks > JavaScript
+
+git tag -a v1.0-m 'first version'
+git push origin --tags
+
+git tag -d v1.1.1;
+git push origin :v1.1.1
+
+git push origin --delete <branchName>
+
+查看Repository中文件权限
+git ls-tree HEAD
+100644 blob xxxxxxxxxxx gradlew
+修改权限
+git update-index --chmod=+x gradlew
+权限修改后，相当于文件进入了index中。
+提交修改
+$ git commit -m "revise permission access"
+
+远程的github分别为 gitbdcom
+
+
+安装yarn：
+0.如果已经有npm,直接使用npm i yarn -g全局安装即可
+1.采用msi安装包直接安装，安装完后查看环境变量，可能需要手动配置环境变量Path：C:\Program Files (x86)\Yarn\bin
+2.采用choco安装后如果yarn命令任然提示not found ，尝试重启系统。
+3.git bash不支持choco安装命令，请使用git cmd窗口，安装完以后可以在git bash中执行choc install yarn; 
+  ref:https://chocolatey.org/install
+4.不要用原npm的node_modules直接替换yarn安装目录下的node_modules，会出现yarn命令失效
+5.使用cnpm install yarn -g 也可以安装（npm首先要安装cnpm），这种方式是建立在已经安装了npm同时保留npm的基础之上:
+  ref:http://www.bubuko.com/infodetail-1919297.html
+6.问题1：无法正确安装node-sass,原因：国内网络不稳定，解决办法：
+  SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ yarn add node-sass
+ （这一句执行以后安装的是重新安装整个modules，所以无需再执行yarn）
+  ref:https://github.com/lmk123/blog/issues/28
+7.问题2：无法正确安装bdp-component,could not resolve hostname github：
+  目前不完善的解决方案：下载bdp-component 文件夹后手动复制到node_modules中
+8.综合推荐：如果要完全替代npm，请先卸载npm，建议使用如下步骤：
+	1.打开cmd或者git cmd ===> 
+	2.执行： @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin" ===> 
+	3.执行： choco install yarn  ===> 
+	4.复制package.json到需要建立yarn的文件夹，去掉bdp-component这一行 ===> 
+	5.执行： SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ yarn add node-sass ===>  
+	6.添加bdp-component文件夹 ===> 
+	7.执行：yarn run vendor打包 ===> 
+	8.yarn start
+问题3：An unexpected error occurred:"Unknown token 1:22"  原因：yarn暂时不支持.yarnrc设置淘宝镜像 解决方案：删除.yarnrc文件（默认git clone下来的时候，已经删掉了）
+
+publish步骤：
+进入需要publish的目录下
+0.npm config get 找到.npmrc，修改为内部镜像网站 registry = "http://npm.corp.ebay.com/"  注意：公司的这个网址等同于http://registry.npm.taobao.org/，so不需要再在前面添加registry（如果这一步执行了则不要再执行1）
+1.npm config set registry http://npm.corp.ebay.com/ --global 这一步是为了adduser做基础准备，否则用户名密码会被提交到外网
+2.npm adduser    使用的 pengcheng和复杂密码
+3.npm publish    问题：npm publish failed Put403 windows_NT  forbidden ，，，mustlowercase 问题原因：name必须全部小写
+  成功后 显示+npmpublishpengchengtest@0.01，其中npmpublishpengchengtest是项目名字
+4.到任意目录，新建一个文件夹，测试能否安装 npm install npmpublishpengchengtest
+  成功后会发现目录下神奇的多出来node_modules\npmpublishpengchengtest
+
+整理：建立一个完整的基于node的yarn+npm的项目
+0.git远程仓库package.json删除dependencies中的bdp-components这一行
+1.git clone 
+2.检查.npmrc registry不能设置为公司内部，因为公司内部npm并不全,例如：node-sass这些组件是没有的，建议设置为淘宝的registry或者使用相关命令执行
+2.SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ yarn add node-sass (这句话等同于先yarn install 再add node-sass)
+3.检查.npmrc :npm config get 修改registry为公司内部 registry = "http://npm.corp.ebay.com/"（为获取公司内部的bdp-components插件做准备）
+4.yarn add bdp-components
+5.yarn vendor(自定义的打包命令)
+6.yarn start
+问题：cross-env is not recognized as an internal：问题原因：此模块被误删，解决办法：npm install cross-env --save-dev
+
+整理：publish一个项目到公司内网
+0.检查.npmrc是否配置为公司内网
+1.进入到要publish的目录下，比如要publish  bdp-components 则在bdp-components目录下
+2.执行npm adduser，输入用户名密码（密码需要大小写）
+3.检查目录下的package.json 查看name和version，name只可以全部小写，可以有-横线，version有个愚蠢设定：每次publish需要和上一次不一样，不然不给publish
+4.npm publish
+
+You can point to npm.corp with the command mentioned in below link
+https://pages.github.corp.ebay.com/nodejs/eBayNodeJs/guide/setup/#set-up-npm
+
+After setting up npm, you can create user account using npm adduser command https://docs.npmjs.com/cli/adduser.
+
+Then you may have to login using npm login and later you can publish using npm publish.
+
+Thanks,
+
+
+ Question about npm publish
+
+Hi Patrick,
+I see the github page about eBay private registry: https://pages.github.corp.ebay.com/nodejs/eBayNodeJs/faqs/faqs/
+ 
+Ref to the faq of ‘how to publish a node module’. I see it says use `npm publish`.
+Could you pls tell me where can I create inner corp npm account & how to publish to the private npm registry?
+
+
+
+Git忽略规则及.gitignore规则不生效的解决办法
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+规则出错回复办法
+git reset head .
+
+
+查看分支：
+git log --graph --decorate --oneline --simplify-by-decoration --all
+查看远程仓库：
+git remote show 
+
+http://www.bubuko.com/infodetail-1919297.html
+node-sass：verb couldnt find 'c:\python\python.EXE'
+node_modules\node-sass:command failed exit code :1
+answer：https://github.com/lmk123/blog/issues/28
+SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ yarn add node-sass
+
+could not resolve hostname github：
+
+awosome font
+
+npm run eslint
+
+git remote -v
+git remote update
+打开git命令行工具；
+进入项目本地路径；
+执行git fetch upstream命令，检出upstream分支以及各自的更新；
+切换到你的本地分支主干：git checkout master；
+合并upsteram/master分支和master分支,将原项目中的更改更新到本地分支，这样就能使你的本地的fork分支与原项目保持同步，命令:
+git merge upstream/master；
+执行git push将本地分支的修改推送到远端fork的项目；
+https://jinlong.github.io/2015/10/12/syncing-a-fork/
+http://www.cnblogs.com/kakag/p/4287536.html
+(git remote update 无效)
+
+
+更新远程仓库时会与本地有冲突：
+1.使用git statsh 删除更改 
+2.以master为原型拷贝新分支
+3.git stash pop  恢复删除的更改
+
+如果jjl改过自己的分支的代码，需要rebase他的分支，接过去他的分支继续我的分支
+git fetch upstream
+git rebase upstream/master  或者git rebase master
+然后checkout到工作分支（sever）
+git log 查看有没有加进去他的commit
+
+淘宝镜像：npm install -g cnpm --registry=https://registry.npm.taobao.org
+ebay镜像：npm install -g ssoapp-ebay --registry=http://npm.corp.ebay.com/
+打包：npm run vendor
+重启：npm restart 
+启动: npm start
+   
+server查看器
+npm install pm2
+pm2 logs headCount
+
+你只需要执行
+git push origin develop:master -f
+就可以把本地的develop分支强制(-f)推送到远程master
+
+npm hotreload settings 搜索 save system settings 勾掉 “Use safe write save changes to a temporary file first ”
+
+ssh-keygen -t rsa -b 4096 -C "1018423717@qq.com"
+ssh-keygen -t rsa -b 4096 -C "pengcheng@ebay.com"
+	or
+ssh-add ~/.ssh/id_rsa
+
+clip < ~/.ssh/id_rsa.pub
+//then add ssh in git website.
+ctrl+v
+eval $(ssh-agent -s)
+ssh -T pengcheng@github.corp.ebay.com
+	or
+ssh -T git@github.corp.ebay.com
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:cpp1992/ty1982.git
+git push -u origin master
+
+mkdir learngit
+cd learngit
+pwd
+git init
+
+vi test.txt
+:!w   (强制保存)
+:q
+git add test.txt
+git commit -m "first test for it!"
+git log
+git add 
+
+workspace in company
+1.fork git@github.corp.ebay.com:jiljiang/HeadCount.git
+2.git clone git@github.corp.ebay.com:pengcheng/HeadCount.git 
+3.git checkout -b dev
+.....coding and git status git add git pull   
+4.git remote add upstream git@github.corp.ebay.com:jiljiang/HeadCount.git
+
+5.checkout to master then git remote update upstream , git rebase upstream/master
+6.checkout to dev then git push origin dev:dev
+7.create pull request in dev branch
+8.repeat step 5.
+
+首先先到master分支：git checkout master
+
+然后把dev给合并过来：git merge dev
+
+最后删除分支：git branch –d dev
+
+
+//add Repository in git website
+http://www.cnblogs.com/chercher/p/5587979.html
+//fork the web object  if im the first git creater use next word
+//git remote add origin git@github.corp.ebay.com:pengcheng/HeadCount.git 
+git checkout -b dev 
+git remote add upstream git@github.corp.ebay.com:jiljiang/HeadCount.git
+git reset --hard 3628164
+
+git clone  git@github.corp.ebay.com:pengcheng/HeadCount.git 
+git push -u origin master
+git fetch origin
+system variables name：CYGWIN_HOME C:\cgwin;
+system variables name：path ;%CYGWIN_HOME\bin;
+
+git remote remove origin 
+git remote rename origin  new
+
+GitHub 现在推荐使用 HTTPS 了。https://help.github.com/articles/which-remote-url-should-i-use/ 
+
+如何在 HTTPS 下将密码存入操作系统 keychain： https://help.github.com/articles/caching-your-github-password-in-git
+
+
+const EMPLOYEE_QUERY = 'http://cms.vip.stratus.ebay.com/cms/repositories/cmsdb/branches/main/query/LDAPContact%5B%40loginName%3D%22vtian%22%5D%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D%2B.manager!LDAPContact%7B%40resourceId%2C%20%40employeeType%2C%40profitCenterName%2C%20%40costCenterId%2C%20%40firstName%2C%20%40lastName%2C%20%40active%7D?mode=uri';
